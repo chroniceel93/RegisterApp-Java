@@ -29,7 +29,7 @@ public class SignInRestController extends BaseRestController {
 		return (new ApiResponse())
 			.setRedirectUrl(ViewNames.SIGN_IN.getRoute());
 	}
-}
 
-@Autowired
-private ActiveUserDeleteCommand activeUserDeleteCommand;
+	@Autowired
+	private ActiveUserDeleteCommand activeUserDeleteCommand;
+}

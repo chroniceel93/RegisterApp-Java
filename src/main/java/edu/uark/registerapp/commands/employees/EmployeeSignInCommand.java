@@ -7,6 +7,7 @@ package edu.uark.registerapp.commands.employees;
  */
 import java.util.Optional;
 import java.util.Arrays;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class EmployeeSignInCommand implements VoidCommandInterface {
     public void execute() {
         final String employeeId = 
             this.employeeSignIn.getEmployeeId();
+
         // first, check for null or missing input
         if (employeeId == "" || employeeId == null ) {
             throw new UnprocessableEntityException("Employee ID"); 
@@ -52,7 +54,23 @@ public class EmployeeSignInCommand implements VoidCommandInterface {
             throw new ConflictException("Password");
         }
 
-
+        // good, user exists, and password is correct.
+        // Now, check to see if user is already signed in.
+        final Optional<ActiveUserEntity> activeUserEntity = 
+            this.activeUserRepository.findByEmployeeId(UUID.fromString(employeeId));
+        if (activeUserEntity.isPresent()) {
+            // The user is already logged in. Update the Session key
+            activeUserEntity.get().setSessionKey(this.sessionKey);
+            activeUserRepository.save(activeUserEntity.get());
+        } else {
+            //user is not logged in, make new Active User, and save.
+            activeUserEntity.get().setSessionKey(this.sessionKey);
+            activeUserEntity.get().setEmployeeId(UUID.fromString(employeeId));
+            activeUserEntity.get().setName((employeeEntity.get().getFirstName() 
+                                          + employeeEntity.get().getLastName()));
+            activeUserEntity.get().setClassification(employeeEntity.get().getClassification());
+            activeUserRepository.save(activeUserEntity.get());
+        }
     }
     
     // Properties

@@ -25,7 +25,7 @@ public class SignInRouteController extends BaseRouteController {
 	// <DONE> TODO: Route for initial page load</DONE>
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> queryParameters) {
-		final ModelAndView modelAndView = 
+		ModelAndView modelAndView = 
 			new ModelAndView(ViewNames.SIGN_IN.getViewName());
 		
 		modelAndView = this.setErrorMessageFromQueryString(modelAndView, queryParameters);

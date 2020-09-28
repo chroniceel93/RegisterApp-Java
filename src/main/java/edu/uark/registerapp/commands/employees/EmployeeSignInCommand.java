@@ -85,7 +85,6 @@ public class EmployeeSignInCommand implements VoidCommandInterface {
     @Autowired
     private ActiveUserRepository activeUserRepository;
 
-    @Autowired
     private EmployeeSignIn employeeSignIn;
 
 

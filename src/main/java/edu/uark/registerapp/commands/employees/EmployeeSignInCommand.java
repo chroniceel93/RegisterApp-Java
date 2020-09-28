@@ -87,6 +87,18 @@ public class EmployeeSignInCommand implements VoidCommandInterface {
 
     @Autowired
     private EmployeeSignIn employeeSignIn;
+
+
+    public EmployeeSignInCommand setSessionKey(final String sessionKey) {
+        this.sessionKey = sessionKey;
+        return this;
+    }
+
+
+    public EmployeeSignInCommand setEmployeeSignIn(final EmployeeSignIn employeeSignIn) {
+        this.employeeSignIn = employeeSignIn;
+        return this;
+    }
 }
 
 

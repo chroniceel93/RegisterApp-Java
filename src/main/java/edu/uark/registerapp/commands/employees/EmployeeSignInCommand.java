@@ -37,7 +37,7 @@ public class EmployeeSignInCommand implements VoidCommandInterface {
         }
         // check to see if employee id is a number
         try {
-            double throwaway = Double.parseDouble(employeeId);
+            Double.parseDouble(employeeId);
         } catch (NumberFormatException nfe) {
             throw new UnprocessableEntityException("Input must be a numerical value.");
         }

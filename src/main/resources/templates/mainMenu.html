@@ -21,15 +21,15 @@
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
 
-		<!-- TODO: Add the various action button elements -->
-		<button type="button">Start Transaction</button>
-		<button type="button">View Products</button>
+		<!-- TODO DONE: Add the various action button elements -->
+		<button id="transaction" name="transaction" type="button">Start Transaction</button>
+		<button id="products" name="products" type="button">View Products</button>
 
-		<!-- Only for managers, conditional inclusion required-->
+		<!-- Only for managers, conditional inclusion required through isElevatedUser -->
 		<div id="manager" th:class="${isElevatedUser} ? hidden : ''">
-			<button type="button">Create Employee</button>
-			<button type="button">Sales Report</button>
-			<button type="button">Cashier Report</button>
+			<button id="employee" name="employee" type="button">Create Employee</button>
+			<button id="employee" name="employee" type="button">Sales Report</button>
+			<button id="employee" name="employee" type="button">Cashier Report</button>
 		</div>
 
 	</div>

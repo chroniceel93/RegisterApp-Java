@@ -57,19 +57,20 @@ public class EmployeeSignInCommand implements VoidCommandInterface {
         // good, user exists, and password is correct.
         // Now, check to see if user is already signed in.
         final Optional<ActiveUserEntity> activeUserEntity = 
-            this.activeUserRepository.findByEmployeeId(UUID.fromString(employeeId));
+            this.activeUserRepository.findByEmployeeId(employeeEntity.get().getId());
         if (activeUserEntity.isPresent()) {
             // The user is already logged in. Update the Session key
             activeUserEntity.get().setSessionKey(this.sessionKey);
             activeUserRepository.save(activeUserEntity.get());
         } else {
             //user is not logged in, make new Active User, and save.
-            activeUserEntity.get().setSessionKey(this.sessionKey);
-            activeUserEntity.get().setEmployeeId(UUID.fromString(employeeId));
-            activeUserEntity.get().setName((employeeEntity.get().getFirstName() 
+            ActiveUserEntity newActiveUserEntity = new ActiveUserEntity();
+            newActiveUserEntity.setSessionKey(this.sessionKey);
+            newActiveUserEntity.setEmployeeId(employeeEntity.get().getId());
+            newActiveUserEntity.setName((employeeEntity.get().getFirstName() 
                                           + employeeEntity.get().getLastName()));
-            activeUserEntity.get().setClassification(employeeEntity.get().getClassification());
-            activeUserRepository.save(activeUserEntity.get());
+            newActiveUserEntity.setClassification(employeeEntity.get().getClassification());
+            activeUserRepository.save(newActiveUserEntity);
         }
     }
     

@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function validateForm() {
 	// TODO: Validate the user input
-	id = document.getElementById('employee_id').nodeValue;
-	pw = document.getElementById('password').nodeValue;
+	id = document.getElementById('employeeId').value;
+	pw = document.getElementById('password').value;
 	if (!id) // if id is empty
 		return false;
 	if (!pw) // if password is empty

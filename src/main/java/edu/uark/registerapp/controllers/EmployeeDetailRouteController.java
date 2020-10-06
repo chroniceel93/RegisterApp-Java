@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.exceptions.NotFoundException;
+import edu.uark.registerapp.commands.employees.ActiveEmployeeExistsQuery;
+import edu.uark.registerapp.commands.employees.EmployeeQuery;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Employee;
@@ -28,11 +30,25 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
+		final Optional<ActiveUserEntity> activeUserEntity =
+			this.getCurrentUser(request);
 
-		// TODO: Logic to determine if the user associated with the current session
-		//  is able to create an employee
+		ModelAndView modelAndView = 
+			new ModelAndView(ViewNames.EMPLOYEE_DETAIL.getViewName());	
+		try {
+			this.activeEmployeeExistsQuery.execute();
+		} catch (final Exception e) {
+			return modelAndView;
+		}
 
-		return new ModelAndView(ViewModelNames.EMPLOYEE_TYPES.getValue());
+		if (this.isElevatedUser(activeUserEntity.get())) {
+			return modelAndView;
+		} else if (!activeUserEntity.isPresent()) {
+			return this.buildInvalidSessionResponse();
+		}
+			
+		return this.buildNoPermissionsResponse();
+		
 	}
 
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.GET)
@@ -51,14 +67,20 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 			return this.buildNoPermissionsResponse();
 		}
 
+		final ModelAndView modelAndView = 
+			new ModelAndView(ViewNames.EMPLOYEE_DETAIL.getViewName());
+
+
 		// TODO: Query the employee details using the request route parameter
 		// TODO: Serve up the page
-		return new ModelAndView(ViewModelNames.EMPLOYEE_TYPES.getValue());
+		return new ModelAndView(ViewModelNames.EMPLOYEE.getValue());
 	}
 
 	// Helper methods
-	private boolean activeUserExists() {
-		// TODO: Helper method to determine if any active users Exist
-		return true;
-	}
+
+	@Autowired
+	private ActiveEmployeeExistsQuery activeEmployeeExistsQuery;
+
+	@Autowired
+	private EmployeeQuery employeeQuery;
 }

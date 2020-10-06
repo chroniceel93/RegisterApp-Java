@@ -42,7 +42,52 @@
 							<input id="employeeEmployeeId" type="text" th:value="${!employee.isEmpty} ? ${employee.employeeId} : ''" class="update" disabled />
 						</td>
 					</tr>
-					<!-- TODO: Other employee inputs -->
+					<!-- Employee inputs -->
+                    <tr class="hidden">
+                        <td class="label">Employee Record ID:</td>
+                        <td>
+                            <input id="employeeRecordId" type="hidden">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">First Name:</td>
+                        <td>
+                            <input id="firstName" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Last Name:</td>
+                        <td>
+                            <input id="lastName" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Password:</td>
+                        <td>
+                            <input id="password" type="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Confirm Password:</td>
+                        <td>
+                            <input id="confirmPassword" type="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Employee Type:</td>
+                        <td>
+                            <select id="employeeType">
+                                <option value="Cashier">Cashier</option>
+                                <option value="Shift Manager">Shift Manager</option>
+                                <option value="General Manager">General Manager</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="save" name="save" type="button">Save</button>
+                        </td>
+                    </tr>
 				</tbody>
 			</table>
 		</div>

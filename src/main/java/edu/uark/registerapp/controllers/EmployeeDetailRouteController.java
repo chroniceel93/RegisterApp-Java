@@ -61,9 +61,7 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.getCurrentUser(request);
 
-		if (!activeUserEntity.isPresent()) {
-			return this.buildInvalidSessionResponse();
-		} else if (!this.isElevatedUser(activeUserEntity.get())) {
+		if (!this.isElevatedUser(activeUserEntity.get())) {
 			return this.buildNoPermissionsResponse();
 		}
 
@@ -71,9 +69,15 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 			new ModelAndView(ViewNames.EMPLOYEE_DETAIL.getViewName());
 
 
-		// TODO: Query the employee details using the request route parameter
-		// TODO: Serve up the page
-		return new ModelAndView(ViewModelNames.EMPLOYEE.getValue());
+		try {
+			modelAndView.addObject(
+				ViewModelNames.EMPLOYEE.getValue(),
+				this.employeeQuery.setId(employeeId).execute());
+		} catch (final Exception e) {
+			return this.buildInvalidSessionResponse();
+		}
+		
+		return modelAndView;
 	}
 
 	// Helper methods

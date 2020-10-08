@@ -76,8 +76,9 @@ public class SignInRouteController extends BaseRouteController {
 			return signInModelAndView;
 		}
 
-		ModelAndView mainMenuModelAndView = new ModelAndView(REDIRECT_PREPEND.concat(ViewNames.MAIN_MENU.getRoute()));
-		return mainMenuModelAndView;
+		return new ModelAndView(
+			REDIRECT_PREPEND.concat(
+				ViewNames.MAIN_MENU.getRoute()));
 	}
 
 	// Properties

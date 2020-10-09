@@ -13,27 +13,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		is this the right JS file to be editing for this task?
 	
 	*/
-	//var errorMsg = "Functionality has not yet been implemented.";
+	var errorMessage = "Functionality has not yet been implemented.";
 
 	// displays error message (from function defined in master.js) on the view when 'start transaction' button is clicked
-	document.getElementById("transaction").addEventListener(event, displayError("Functionality has not yet been implemented."));
+	document.getElementById("transaction").addEventListener("click", function() {displayError(errorMessage);} );
 	
 	// sends user to existing productListing view when 'view products' button is clicked
-	/*document.getElementById("products").addEventListener("click", location.assign("productListing.html"));
+	document.getElementById("products").addEventListener("click", function() {location.assign("productListing");} );
 
+	/*
 	// when visible
 	if (document.getElementById("manager").className == '') { // if (manager is not hidden)
 		// navigate to new employeeDetail view when 'create employee' button is clicked
-		document.getElementById("employee").addEventListener("click", location.assign("employeeDetail.html"));
+		document.getElementById("employee").addEventListener("click", function() {location.assign("employeeDetail");} );
 
 		// displays error message on view when 'sales report' clicked
-		document.getElementById("sales").addEventListener("click", displayError(errorMessage));
+		document.getElementById("sales").addEventListener("click", function() {displayError(errorMessage);} );
 
 		// displays error message on view when 'cashier report' button is clicked
-		document.getElementById("cashier").addEventListener("click", displayError(errorMessage));
+		document.getElementById("cashier").addEventListener("click", function() {displayError(errorMessage);} );
 	}
-	*/
 	
+	*/
 
 
 });

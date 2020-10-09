@@ -49,13 +49,24 @@ public class ProductRestController extends BaseRestController {
 	@RequestMapping(value = "/{productId}", method = RequestMethod.PUT)
 	public @ResponseBody ApiResponse updateProduct(
 		@PathVariable final UUID productId,
-		@RequestBody final Product product
+		@RequestBody final Product product,final HttpServletRequest request,
+		final HttpServletResponse response
 	) {
+		ApiResponse userElevatedReponse = this.redirectUserNotElevated(
+			request, 
+			response, 
+			ViewNames.PRODUCT_LISTING.getRoute());
 
-		return this.productUpdateCommand
+		if (userElevatedReponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
+			// Is an elevated user, create product.
+			return this.productUpdateCommand
 			.setProductId(productId)
 			.setApiProduct(product)
 			.execute();
+		} else {
+			// Not an elevated user, cannot create product.
+			return userElevatedReponse;
+		}
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)

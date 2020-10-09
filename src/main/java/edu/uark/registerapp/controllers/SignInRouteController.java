@@ -25,10 +25,10 @@ public class SignInRouteController extends BaseRouteController {
 	// <DONE> TODO: Route for initial page load</DONE>
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> queryParameters) {
-		ModelAndView modelAndView = 
+		ModelAndView signInModelAndView = 
 			new ModelAndView(ViewNames.SIGN_IN.getViewName());
 		
-		modelAndView = this.setErrorMessageFromQueryString(modelAndView, queryParameters);
+			signInModelAndView = this.setErrorMessageFromQueryString(signInModelAndView, queryParameters);
 		
 
 		try {
@@ -42,18 +42,18 @@ public class SignInRouteController extends BaseRouteController {
 		}
 
 		if (!queryParameters.containsKey(QueryParameterNames.EMPLOYEE_ID.getValue())) {
-			return modelAndView;
+			return signInModelAndView;
 		} else {
 			try{
-				modelAndView.addObject(
+				signInModelAndView.addObject(
 					QueryParameterNames.EMPLOYEE_ID.getValue(), 
 					queryParameters.get(QueryParameterNames.EMPLOYEE_ID.getValue()));
 			} catch (final Exception e) {
-				// I have not yet figured out what to do here. Maybe log at least.
+				// LOG
 			}
 		}
 
-		return modelAndView;
+		return signInModelAndView;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -66,12 +66,14 @@ public class SignInRouteController extends BaseRouteController {
 		//  and the "id" property of the (HttpServletRequest)request.getSession() variable
 		//  to sign in the user</DONE>
 		try{
-			this.employeeSignInCommand.setEmployeeSignIn(employeeSignIn).setSessionKey(request.getSession().getId()).execute();
+			this.employeeSignInCommand.setEmployeeSignIn(employeeSignIn);
+			this.employeeSignInCommand.setSessionKey(request.getSession().getId());
+			this.employeeSignInCommand.execute();
 		} catch (final Exception e) {
-			ModelAndView modelAndView = new ModelAndView(ViewNames.SIGN_IN.getViewName());
-			modelAndView.addObject(ViewModelNames.ERROR_MESSAGE.getValue(), 
+			ModelAndView signInModelAndView = new ModelAndView(ViewNames.SIGN_IN.getViewName());
+			signInModelAndView.addObject(ViewModelNames.ERROR_MESSAGE.getValue(), 
 									e.getMessage());
-			return modelAndView;
+			return signInModelAndView;
 		}
 
 		return new ModelAndView(

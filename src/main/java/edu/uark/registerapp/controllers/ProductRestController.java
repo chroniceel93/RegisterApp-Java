@@ -2,6 +2,10 @@ package edu.uark.registerapp.controllers;
 
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,44 +17,80 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.uark.registerapp.commands.products.ProductCreateCommand;
 import edu.uark.registerapp.commands.products.ProductDeleteCommand;
 import edu.uark.registerapp.commands.products.ProductUpdateCommand;
+import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.api.Product;
 
 @RestController
 @RequestMapping(value = "/api/product")
-public class ProductRestController {
+public class ProductRestController extends BaseRestController {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse createProduct(
-		@RequestBody final Product product
+		@RequestBody final Product product, final HttpServletRequest request,
+		final HttpServletResponse response
 	) {
+		ApiResponse userElevatedReponse = this.redirectUserNotElevated(
+			request, 
+			response, 
+			ViewNames.PRODUCT_LISTING.getRoute());
 
-		return this.productCreateCommand
+		if (userElevatedReponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
+			// Is an elevated user, create product.
+			return this.productCreateCommand
 			.setApiProduct(product)
 			.execute();
+		} else {
+			// Not an elevated user, cannot create product.
+			return userElevatedReponse;
+		}
+		
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.PUT)
 	public @ResponseBody ApiResponse updateProduct(
 		@PathVariable final UUID productId,
-		@RequestBody final Product product
+		@RequestBody final Product product,final HttpServletRequest request,
+		final HttpServletResponse response
 	) {
+		ApiResponse userElevatedReponse = this.redirectUserNotElevated(
+			request, 
+			response, 
+			ViewNames.PRODUCT_LISTING.getRoute());
 
-		return this.productUpdateCommand
+		if (userElevatedReponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
+			// Is an elevated user, update product.
+			return this.productUpdateCommand
 			.setProductId(productId)
 			.setApiProduct(product)
 			.execute();
+		} else {
+			// Not an elevated user, cannot update product.
+			return userElevatedReponse;
+		}
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
 	public @ResponseBody ApiResponse deleteProduct(
-		@PathVariable final UUID productId
+		@PathVariable final UUID productId,final HttpServletRequest request,
+		final HttpServletResponse response
 	) {
+		ApiResponse userElevatedReponse = this.redirectUserNotElevated(
+			request, 
+			response, 
+			ViewNames.PRODUCT_LISTING.getRoute());
 
-		this.productDeleteCommand
+		if (userElevatedReponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
+			// Is an elevated user, delete product.
+			this.productDeleteCommand
 			.setProductId(productId)
 			.execute();
 
-		return new ApiResponse();
+			return new ApiResponse();
+		} else {
+			// Not an elevated user, cannot delete product.
+			return userElevatedReponse;
+		}
+
 	}
 
 	// Properties

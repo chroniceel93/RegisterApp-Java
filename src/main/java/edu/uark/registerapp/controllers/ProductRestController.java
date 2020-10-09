@@ -58,27 +58,39 @@ public class ProductRestController extends BaseRestController {
 			ViewNames.PRODUCT_LISTING.getRoute());
 
 		if (userElevatedReponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
-			// Is an elevated user, create product.
+			// Is an elevated user, update product.
 			return this.productUpdateCommand
 			.setProductId(productId)
 			.setApiProduct(product)
 			.execute();
 		} else {
-			// Not an elevated user, cannot create product.
+			// Not an elevated user, cannot update product.
 			return userElevatedReponse;
 		}
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
 	public @ResponseBody ApiResponse deleteProduct(
-		@PathVariable final UUID productId
+		@PathVariable final UUID productId,final HttpServletRequest request,
+		final HttpServletResponse response
 	) {
+		ApiResponse userElevatedReponse = this.redirectUserNotElevated(
+			request, 
+			response, 
+			ViewNames.PRODUCT_LISTING.getRoute());
 
-		this.productDeleteCommand
+		if (userElevatedReponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
+			// Is an elevated user, delete product.
+			this.productDeleteCommand
 			.setProductId(productId)
 			.execute();
 
-		return new ApiResponse();
+			return new ApiResponse();
+		} else {
+			// Not an elevated user, cannot delete product.
+			return userElevatedReponse;
+		}
+
 	}
 
 	// Properties

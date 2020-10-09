@@ -22,6 +22,13 @@ public class ProductListingRouteController extends BaseRouteController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView showProductListing(final HttpServletRequest request) {
 		Optional<ActiveUserEntity> activeUser = this.getCurrentUser(request);
+		if(!activeUser.isPresent()) {
+			return new ModelAndView(
+				REDIRECT_PREPEND.concat(
+					ViewNames.SIGN_IN.getRoute()));
+		} // Else, activeUser exists, doNothing();
+
+
 		ModelAndView modelAndView =
 			new ModelAndView(ViewNames.PRODUCT_LISTING.getViewName());
 
@@ -29,6 +36,9 @@ public class ProductListingRouteController extends BaseRouteController {
 			modelAndView.addObject(
 				ViewModelNames.PRODUCTS.getValue(),
 				this.productsQuery.execute());
+			modelAndView.addObject(
+				ViewModelNames.IS_ELEVATED_USER.getValue(),
+				this.isElevatedUser(activeUser.get()));
 		} catch (final Exception e) {
 			modelAndView.addObject(
 				ViewModelNames.ERROR_MESSAGE.getValue(),

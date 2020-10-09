@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		not sure how to display errorMessage. In employeeDetail.html there is a header for an error message that will display
 		if not empty but not sure how to send that to page
 
-	*/
+	
 	document.getElementById('save').addEventListener('click', function() {
 		var firstName = document.getElementById('firstName').value;
 		var lastName = document.getElementById('lastName').value;
@@ -51,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 	});
+
+	*/
 
 });
 

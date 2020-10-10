@@ -8,9 +8,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 	Possible problems:
 		not sure what to do with 'event' parameter
-		all location.assign() statements -> is .html the right URL? am I supposed to create employeeDetail.html?
-		should if statement be a while statement?
-		is this the right JS file to be editing for this task?
 	
 	*/
 	var errorMessage = "Functionality has not yet been implemented.";
@@ -23,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 	/*
 	// when visible
-	if (document.getElementById("manager").className == '') { // if (manager is not hidden)
+	if (document.getElementById("manager").className == 'hidden') { // if (manager is not hidden)
 		// navigate to new employeeDetail view when 'create employee' button is clicked
 		document.getElementById("employee").addEventListener("click", function() {location.assign("employeeDetail");} );
 

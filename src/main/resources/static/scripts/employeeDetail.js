@@ -1,10 +1,19 @@
 let hideEmployeeSavedAlertTimer = undefined;
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
 	// TODO: Things that need doing when the view is loaded
 
 	/*
 	Task 10
+	
+	Possible problems:
+		not sure if simply setting errorMessage will display it on page
+		no idea how to 'interrupt/stop the save functionality'
+		not sure if ajax functions will work, they are defined in master.js
+
+
 	• On page load[1], define a “click” event handler[2] for the “Save” button defined in the view
 		◦ Functionality should validate the input before proceeding
 			▪ First name should not be blank
@@ -15,18 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			▪ Display an appropriate error
 			▪ Focus and select the offending element
 			▪ Interrupt/stop the save functionality
-		◦ Perform an HTTP request, via AJAX[3], to the server to save the employee details
-			▪ Perform a POST request[4,5] if the employee is new
-			▪ Perform a PATCH request[4,5] if the employee exists in the database
-		◦ After saving the employee and if the employee ID input element is not visible then display
-		the employee ID input element
-			▪ Input should remain disabled[6]
 
-	Possible problems:
-		not sure how to display errorMessage. In employeeDetail.html there is a header for an error message that will display
-		if not empty but not sure how to send that to page
+	*/
 
-	
+	/*
 	document.getElementById('save').addEventListener('click', function() {
 		var firstName = document.getElementById('firstName').value;
 		var lastName = document.getElementById('lastName').value;
@@ -46,13 +47,31 @@ document.addEventListener("DOMContentLoaded", () => {
 				employeeType != 'Shift Manager' && 
 				employeeType != 'General Manager')
 			invalidResponse('Employee type is invalid');
-		
-		
-
-
-	});
 
 	*/
+
+	/*
+		
+	◦ Perform an HTTP request, via AJAX[3], to the server to save the employee details
+		▪ Perform a POST request[4,5] if the employee is new
+		▪ Perform a PATCH request[4,5] if the employee exists in the database
+	◦ After saving the employee and if the employee ID input element is not visible then display
+	the employee ID input element
+		▪ Input should remain disabled[6]
+
+	*/
+
+	//if (employee is new)
+	//	ajaxPost(resourceRelativeUri, data, callback);
+	//else if (employee exists in database)
+	//	ajaxPatch(resourceRelativeUri, data, callback);
+
+	//if (employee ID input element is not visible)
+	//	display employee ID input element
+	// input should remain disabled
+
+	//});
+
 
 });
 

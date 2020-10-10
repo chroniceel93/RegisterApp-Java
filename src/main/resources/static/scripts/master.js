@@ -13,18 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 	Possible problems:
 		unsure of parameters in ajaxDelete() call
-
+	
 	
 	document.getElementById("signOutImage").addEventListener("click", function() {
 		//◦ Should make an HTTP request, via AJAX[5], to the server to clear the active user
 		//	▪ Perform a DELETE request[6,7]
 		
-		ajaxDelete('activeUserEntity', callback);
+		ajaxDelete('activeUserEntity', null);
 
 		//◦ Redirect[8] to the Sign In view upon completion of the request
-		location.replace("signIn.html");
+		location.replace("signIn");
 	});
+
 	*/
+	
 });
 
 // AJAX

@@ -60,7 +60,7 @@ public class EmployeeRestController extends BaseRestController {
 		}
 
 		// TODO: Create an employee;
-		final Employee createdEmployee = this.employeeCreateCommand.execute();
+		final Employee createdEmployee = this.employeeCreateCommand.setApiEmployee(employee).setInitialEmployee(isInitialEmployee).execute();
 
 		if (isInitialEmployee) {
 			createdEmployee
@@ -85,7 +85,6 @@ public class EmployeeRestController extends BaseRestController {
 			this.activeEmployeeExistsQuery.execute();
 		} catch (NotFoundException e) {
 			response.setStatus(302);
-			System.out.println(e.getMessage());
 			return this.redirectSessionNotActive(response);
 		}
 

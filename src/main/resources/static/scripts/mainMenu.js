@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 	
 	// navigate to new employeeDetail view when 'create employee' button is clicked
-	document.getElementById("employee").addEventListener("click", function() {window.location.assign("employeeDetail");} );
+	document.getElementById("employee").addEventListener("click", function() {window.location.assign("/employeeDetail");} );
 
 	// displays error message on view when 'sales report' clicked
 	document.getElementById("sales").addEventListener("click", function() {displayError(errorMessage);} );

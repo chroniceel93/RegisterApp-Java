@@ -31,8 +31,8 @@ function saveActionClick(event) {
 	const employeeIdIsDefined = (employeeId.value.trim() != ''); // true if ID is not empty, false otherwise
 	const saveActionUrl = ('/api/employee/' + (employeeIdIsDefined ? employeeId : '')); // if employeeId is defined, add it to url
 	const saveEmployeeRequest = {
-		id: employeeId,
-		managerId: getEmployeeManagerIdElement(),
+		id: employeeId.value,
+		managerId: getEmployeeManagerIdElement().value,
 		firstName: getFirstNameElement().value,
 		lastName: getLastNameElement().value,
 		password: getPasswordElement().value,

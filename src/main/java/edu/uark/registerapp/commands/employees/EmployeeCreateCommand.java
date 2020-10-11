@@ -25,6 +25,10 @@ public class EmployeeCreateCommand implements ResultCommandInterface<Employee> {
         this.getApiEmployee().setId(createEmployeeEntity.getId());
         this.getApiEmployee().setEmployeeId(createEmployeeEntity.getEmployeeId());
         this.getApiEmployee().setCreatedOn(createEmployeeEntity.getCreatedOn());
+        this.getApiEmployee().setFirstName(createEmployeeEntity.getFirstName());
+        this.getApiEmployee().setLastName(createEmployeeEntity.getLastName());
+        this.getApiEmployee().setClassification(createEmployeeEntity.getClassification());
+        this.getApiEmployee().setIsActive(true);
         
         return this.getApiEmployee();
     }

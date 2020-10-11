@@ -28,7 +28,7 @@ function saveActionClick(event) {
 	saveElement.disabled = true;  // to ensure save button cannot be re-clicked
 
 	const employeeId = getEmployeeIdElement();
-	const employeeIdIsDefined = (employeeId.trim() != ''); // true if ID is not empty, false otherwise
+	const employeeIdIsDefined = (employeeId.value.trim() != ''); // true if ID is not empty, false otherwise
 	const saveActionUrl = ('/api/employee/' + (employeeIdIsDefined ? employeeId : '')); // if employeeId is defined, add it to url
 	const saveEmployeeRequest = {
 		id: employeeId,

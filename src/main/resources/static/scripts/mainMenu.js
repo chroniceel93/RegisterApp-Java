@@ -16,22 +16,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	document.getElementById("transaction").addEventListener("click", function() {displayError(errorMessage);} );
 	
 	// sends user to existing productListing view when 'view products' button is clicked
-	document.getElementById("products").addEventListener("click", function() {location.assign("productListing");} );
+	document.getElementById("products").addEventListener("click", function() {window.location.assign("/productListing");} );
 
-	/*
-	// when visible
-	if (document.getElementById("manager").className == 'hidden') { // if (manager is not hidden)
-		// navigate to new employeeDetail view when 'create employee' button is clicked
-		document.getElementById("employee").addEventListener("click", function() {location.assign("employeeDetail");} );
-
-		// displays error message on view when 'sales report' clicked
-		document.getElementById("sales").addEventListener("click", function() {displayError(errorMessage);} );
-
-		// displays error message on view when 'cashier report' button is clicked
-		document.getElementById("cashier").addEventListener("click", function() {displayError(errorMessage);} );
-	}
 	
-	*/
+	// navigate to new employeeDetail view when 'create employee' button is clicked
+	document.getElementById("employee").addEventListener("click", function() {window.location.assign("employeeDetail");} );
+
+	// displays error message on view when 'sales report' clicked
+	document.getElementById("sales").addEventListener("click", function() {displayError(errorMessage);} );
+
+	// displays error message on view when 'cashier report' button is clicked
+	document.getElementById("cashier").addEventListener("click", function() {displayError(errorMessage);} );
+	
+	
 
 
 });

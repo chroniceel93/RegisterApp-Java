@@ -85,6 +85,7 @@ public class EmployeeRestController extends BaseRestController {
 			this.activeEmployeeExistsQuery.execute();
 		} catch (NotFoundException e) {
 			response.setStatus(302);
+			System.out.println(e.getMessage());
 			return this.redirectSessionNotActive(response);
 		}
 

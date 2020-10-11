@@ -127,9 +127,9 @@ function validateSave() {
 
 	const employeeType = getEmployeeTypeElement();
 	// if (employeeType is not one of the accepted values)
-	if (employeeType.value != 'Cashier' && 
-			employeeType.value != 'Shift Manager' && 
-			employeeType.value != 'General Manager') {
+	if (employeeType.value != '101' && 
+			employeeType.value != '501' && 
+			employeeType.value != '701') {
 		displayError('Type of employee is not accepted');
 		employeeType.focus();
 		employeeType.select();

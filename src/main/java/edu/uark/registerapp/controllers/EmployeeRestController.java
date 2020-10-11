@@ -51,7 +51,7 @@ public class EmployeeRestController extends BaseRestController {
 			return this.redirectUserNotElevated(request, response, "mainMenu");
 		}
 
-		if (employee.getIsActive()) {
+		if (!employee.getIsActive()) {
 			return this.redirectSessionNotActive(response);
 		}
 
@@ -60,7 +60,7 @@ public class EmployeeRestController extends BaseRestController {
 		}
 
 		// TODO: Create an employee;
-		final Employee createdEmployee = this.employeeCreateCommand.setApiEmployee(employee).setInitialEmployee(isInitialEmployee).execute();
+		final Employee createdEmployee = this.employeeCreateCommand.execute();
 
 		if (isInitialEmployee) {
 			createdEmployee

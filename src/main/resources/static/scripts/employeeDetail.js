@@ -65,6 +65,7 @@ function completeSave(callback) {
 	}
 
 	displayEmployeeSavedAlertModal(); // honestly no idea what this does
+	// makes a popup message appear
 
 	const employeeEmployeeId = getEmployeeEmployeeIdElement();
 	const employeeEmployeeIdRow = employeeEmployeeId.closest('tr'); // closest row element ancestor to employeeEmployeeId
@@ -73,6 +74,7 @@ function completeSave(callback) {
 		employeeEmployeeId.value = callback.data.employeeId;
 		employeeEmployeeIdRow.classList.remove('hidden');
 	}
+	employeeEmployeeId.value = callback.data.employeeId;
 }
 
 /*

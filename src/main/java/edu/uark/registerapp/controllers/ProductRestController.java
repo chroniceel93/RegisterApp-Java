@@ -48,11 +48,6 @@ public class ProductRestController extends BaseRestController {
 		return this.productCreateCommand
 			.setApiProduct(product)
 			.execute();
-		} else {
-			// Not an elevated user, cannot create product.
-			return userElevatedReponse;
-		}
-		
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.PUT)

@@ -5,7 +5,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,10 +29,6 @@ public class ProductRestController extends BaseRestController {
 		final HttpServletRequest request,
 		final HttpServletResponse response
 	) {
-		ApiResponse userElevatedReponse = this.redirectUserNotElevated(
-			request, 
-			response, 
-			ViewNames.PRODUCT_LISTING.getRoute());
 
 		final ApiResponse elevatedUserResponse =
 			this.redirectUserNotElevated(
@@ -48,58 +43,34 @@ public class ProductRestController extends BaseRestController {
 		return this.productCreateCommand
 			.setApiProduct(product)
 			.execute();
-		} else {
-			// Not an elevated user, cannot create product.
-			return userElevatedReponse;
-		}
-		
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.PUT)
 	public @ResponseBody ApiResponse updateProduct(
 		@PathVariable final UUID productId,
-		@RequestBody final Product product,final HttpServletRequest request,
-		final HttpServletResponse response
+		@RequestBody final Product product
 	) {
-		ApiResponse userElevatedReponse = this.redirectUserNotElevated(
-			request, 
-			response, 
-			ViewNames.PRODUCT_LISTING.getRoute());
 
-		if (userElevatedReponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
-			// Is an elevated user, update product.
-			return this.productUpdateCommand
+		// TODO: Verify that the user associated with the current session is elevated
+
+		return this.productUpdateCommand
 			.setProductId(productId)
 			.setApiProduct(product)
 			.execute();
-		} else {
-			// Not an elevated user, cannot update product.
-			return userElevatedReponse;
-		}
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
 	public @ResponseBody ApiResponse deleteProduct(
-		@PathVariable final UUID productId,final HttpServletRequest request,
-		final HttpServletResponse response
+		@PathVariable final UUID productId
 	) {
-		ApiResponse userElevatedReponse = this.redirectUserNotElevated(
-			request, 
-			response, 
-			ViewNames.PRODUCT_LISTING.getRoute());
 
-		if (userElevatedReponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
-			// Is an elevated user, delete product.
-			this.productDeleteCommand
+		// TODO: Verify that the user associated with the current session is elevated
+
+		this.productDeleteCommand
 			.setProductId(productId)
 			.execute();
 
-			return new ApiResponse();
-		} else {
-			// Not an elevated user, cannot delete product.
-			return userElevatedReponse;
-		}
-
+		return new ApiResponse();
 	}
 
 	// Properties

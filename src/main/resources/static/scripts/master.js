@@ -3,30 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (signOutActionElement != null) {
 		signOutActionElement.addEventListener("click", signOutActionClickHandler);
 	}
-
-	/* 
-	Task 7 part 2
-	On page load[1], define a “click” event handler[2] for the sign out image when defined
-		◦ Should be defined in a common module that can be accessed from each of the client-side
-		modules (a view/script(s)/style(s) triplet)
-			▪ Probably master.js
-		
-	Possible problems:
-		unsure of parameters in ajaxDelete() call
-	
-	
-	document.getElementById("signOutImage").addEventListener("click", function() {
-		//◦ Should make an HTTP request, via AJAX[5], to the server to clear the active user
-		//	▪ Perform a DELETE request[6,7]
-		
-		ajaxDelete('activeUserEntity', null);
-
-		//◦ Redirect[8] to the Sign In view upon completion of the request
-		location.replace("signIn");
-	});
-
-	*/
-	
 });
 
 // AJAX

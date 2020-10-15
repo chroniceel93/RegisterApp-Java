@@ -30,11 +30,6 @@ public class ProductRestController extends BaseRestController {
 		final HttpServletRequest request,
 		final HttpServletResponse response
 	) {
-		ApiResponse userElevatedReponse = this.redirectUserNotElevated(
-			request, 
-			response, 
-			ViewNames.PRODUCT_LISTING.getRoute());
-
 		final ApiResponse elevatedUserResponse =
 			this.redirectUserNotElevated(
 				request,

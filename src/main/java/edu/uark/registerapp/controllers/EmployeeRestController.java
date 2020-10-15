@@ -99,7 +99,7 @@ public class EmployeeRestController extends BaseRestController {
 			return elevatedUserResponse;
 		}
 
-		// TODO: Update the employee
+		// Update the employee
 		return this.employeeUpdateCommand.execute();
 	}
 

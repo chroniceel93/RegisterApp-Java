@@ -22,7 +22,7 @@ import edu.uark.registerapp.models.api.EmployeeSignIn;
 @Controller
 @RequestMapping(value = "/")
 public class SignInRouteController extends BaseRouteController {
-	// <DONE> TODO: Route for initial page load</DONE>
+	// <DONE> Route for initial page load</DONE>
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> queryParameters) {
 		ModelAndView signInModelAndView = 
@@ -58,11 +58,11 @@ public class SignInRouteController extends BaseRouteController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ModelAndView performSignIn(
-		// <DONE>TODO: Define an object that will represent the sign in request and add it as a parameter here</DONE>
+		// <DONE> Define an object that will represent the sign in request and add it as a parameter here</DONE>
 		EmployeeSignIn employeeSignIn, HttpServletRequest request
 	) {
 
-		// <DONE>TODO: Use the credentials provided in the request body
+		// <DONE> Use the credentials provided in the request body
 		//  and the "id" property of the (HttpServletRequest)request.getSession() variable
 		//  to sign in the user</DONE>
 		try{

@@ -34,20 +34,21 @@
 					<tr>
 						<td class="label">Lookup Code:</td>
 						<td>
-							<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
+							<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" th:disabled="${isElevatedUser == false}"/>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">Count:</td>
 						<td>
-							<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
+							<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" th:disabled="${isElevatedUser == false}"/>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-
+		
 		<div class="productActionsWrapper">
+			<div th:class="${isElevatedUser} ? '' : hidden">
 			<br />
 			<div id="deleteActionContainer" th:class="${product.isEmpty} ? hidden : ''">
 				<button id="deleteButton" type="button" class="action">Delete</button>
@@ -55,6 +56,7 @@
 				<br />
 			</div>
 			<button id="saveButton" type="button" class="action">Save</button>
+			</div>
 		</div>
 
 		<div id="productSavedAlertModal" class="modal animate-opacity-show">

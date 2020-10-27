@@ -20,9 +20,10 @@ public class SignInRestController extends BaseRestController {
 		final HttpServletRequest request
 	) {
 
-		// <DONE>TODO: Sign out the user associated with request.getSession().getId()</DONE>
+		// <DONE> Sign out the user associated with request.getSession().getId()</DONE>
 		try{
-			this.activeUserDeleteCommand.setSessionKey(request.getSession().getId()).execute();
+			this.activeUserDeleteCommand.setSessionKey(request.getSession().getId());
+			this.activeUserDeleteCommand.execute();
 		} catch (Exception e) {
 			// LOG
 		}

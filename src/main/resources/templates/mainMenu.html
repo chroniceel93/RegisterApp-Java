@@ -26,10 +26,10 @@
 		<button id="products" name="products" type="button">View Products</button>
 
 		<!-- Only for managers, conditional inclusion required through isElevatedUser -->
-		<div id="manager" th:class="${isElevatedUser} ? hidden : ''">
+		<div id="manager" th:class="${isElevatedUser} ? '' : hidden">
 			<button id="employee" name="employee" type="button">Create Employee</button>
-			<button id="employee" name="employee" type="button">Sales Report</button>
-			<button id="employee" name="employee" type="button">Cashier Report</button>
+			<button id="sales" name="sales" type="button">Sales Report</button>
+			<button id="cashier" name="cashier" type="button">Cashier Report</button>
 		</div>
 
 	</div>
@@ -50,8 +50,8 @@
 		</script>
 	</div>
 
-	<div class="footer">
-		<img id="signOutImage" src="images/Sign-Out.png" alt="Sign Out" class="footer" />
+	<div class="footer" th:classappend="${isInitialEmployee} ? hidden : ''">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
 	</div>
 		
 </body>

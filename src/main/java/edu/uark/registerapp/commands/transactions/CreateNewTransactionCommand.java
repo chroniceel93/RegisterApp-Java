@@ -16,7 +16,7 @@ import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 import edu.uark.registerapp.models.repositories.TransactionRepository;
 
 @Service
-public class CreateNewTransaction implements VoidCommandInterface {
+public class CreateNewTransactionCommand implements VoidCommandInterface {
 	@Override
 	public void execute() {
 		long transactionTotal = 0L;
@@ -50,7 +50,7 @@ public class CreateNewTransaction implements VoidCommandInterface {
 	public UUID getEmployeeId() {
 		return this.employeeId;
 	}
-	public CreateNewTransaction setEmployeeId(final UUID employeeId) {
+	public CreateNewTransactionCommand setEmployeeId(final UUID employeeId) {
 		this.employeeId = employeeId;
 		return this;
 	}

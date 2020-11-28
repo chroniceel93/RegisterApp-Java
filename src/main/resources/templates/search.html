@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/styles/productListing.css">
 
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
-	<script type="text/javascript" src="/scripts/productListing.js" defer></script>
+	<script type="text/javascript" src="/scripts/search.js" defer></script>
 </head>
 
 <body>
@@ -23,7 +23,11 @@
 
         <div id="routing">
 			<button id="transaction" name="transaction" type="button">Return to Transaction Page</button>
-        </div>
+		</div>
+
+		<div id="searchField" class="inputContent">
+			<input id="searchBar" type="text" th:value=""/>
+		</div>
 
         <!-- TODO need to edit to display correct information -->
 		<div class="productsWrapper">

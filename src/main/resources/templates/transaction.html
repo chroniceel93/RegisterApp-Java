@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/styles/productListing.css">
 
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
-	<script type="text/javascript" src="/scripts/productListing.js" defer></script>
+	<script type="text/javascript" src="/scripts/transaction.js" defer></script>
 </head>
 
 <body>
@@ -25,7 +25,14 @@
 			<button id="cancel" name="cancel" type="button">Cancel Transaction</button>
 			<button id="confirm" name="confirm" type="button">Confirm Transaction</button>
 			<button id="search" name="search" type="button">Search for Products</button>
-        </div>
+		</div>
+		
+		<div id="cartInformation">
+			<h4>Cart Count</h4>
+			<input id="count" type="text" th:value="" disabled />
+			<h4>Cart Cost</h4>
+			<input id="cost" type="text" th:value="" disabled />
+		</div>
 
         <!-- TODO need to edit to display correct information -->
 		<div class="productsWrapper">

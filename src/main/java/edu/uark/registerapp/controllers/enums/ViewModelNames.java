@@ -7,7 +7,9 @@ public enum ViewModelNames {
 	PRODUCTS("products"), // Product listing
 	PRODUCT("product"), // Product detail
 	EMPLOYEE("employee"),
-	TRANSACTION_ENTRIES("transactionEntries"); // Transaction 
+	TRANSACTION_ENTRIES("transactionEntries"), // Transaction 
+	COUNT("count"), // Transaction
+	COST("cost"); // Transaction
 	
 	public String getValue() {
 		return value;

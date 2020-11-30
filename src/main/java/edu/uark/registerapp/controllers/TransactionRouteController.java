@@ -31,6 +31,8 @@ public class TransactionRouteController extends BaseRouteController {
 					ViewNames.SIGN_IN.getRoute()));
 		} // Else, activeUser exists, doNothing();
 
+		//TODO: check if a transaction exists. if so, load the entries; otherwise, create a new transaction.
+
 
 		ModelAndView modelAndView =
 			new ModelAndView(ViewNames.TRANSACTION.getViewName());

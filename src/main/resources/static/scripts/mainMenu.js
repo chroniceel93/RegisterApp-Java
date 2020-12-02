@@ -5,15 +5,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	Task 7 part 1
 	On page load[1], define “click” event handlers[2] for the various navigation buttons defined in the
 	view
-
-	Possible problems:
-		not sure what to do with 'event' parameter
-	
 	*/
 	var errorMessage = "Functionality has not yet been implemented.";
 
-	// displays error message (from function defined in master.js) on the view when 'start transaction' button is clicked
-	document.getElementById("transaction").addEventListener("click", function() {displayError(errorMessage);} );
+	// sends user to transaction page when transaction button is clicked
+	document.getElementById("transaction").addEventListener("click", function() {window.location.assign("/transaction");} );
 	
 	// sends user to existing productListing view when 'view products' button is clicked
 	document.getElementById("products").addEventListener("click", function() {window.location.assign("/productListing");} );

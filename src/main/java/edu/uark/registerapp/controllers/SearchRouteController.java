@@ -70,10 +70,11 @@ public class SearchRouteController extends BaseRouteController {
 			new ModelAndView(ViewNames.PRODUCT_DETAIL.getViewName());
 
 		try {
-			modelAndView.addObject(
+			/* modelAndView.addObject(
                 ViewModelNames.PRODUCT.getValue(),
                 // Needs ProductRepository and ProductsQuery TO BE CHANGED.
 				this.productQuery.setPartialLookupcode(partialLookupcode).execute());
+			*/ 
 			modelAndView.addObject(
 				ViewModelNames.IS_ELEVATED_USER.getValue(),
 				this.isElevatedUser(activeUser.get()));

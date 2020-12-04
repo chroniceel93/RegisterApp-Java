@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
  /** TO BE ADDED **/
-import edu.uark.registerapp.commands.transactions.TransactionCalculationCommand;
+// import edu.uark.registerapp.commands.transactions.TransactionCalculationCommand;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 /** TO BE ADDED */
@@ -86,7 +86,7 @@ public class TransactionRouteController extends BaseRouteController {
 	// I've stubbed it anyways, so if we do end up needing it, all I need
 	// to do is implement the logic
 	// - William
-	
-	@Autowired
-	private TransactionCalculationCommand transactionCalculationCommand;
+
+//	@Autowired
+//	private TransactionCalculationCommand transactionCalculationCommand;
 }

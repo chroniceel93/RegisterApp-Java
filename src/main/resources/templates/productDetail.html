@@ -43,6 +43,12 @@
 							<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" th:disabled="${isElevatedUser == false}"/>
 						</td>
 					</tr>
+					<tr>
+						<td class="label">Price: </td>>
+						<td>
+							<input id="productPrice" type="number" th:value="${!product.isEmpty} ? ${product.price} : ''" classs="update" th:disable="${isElevatedUser == flase}"/>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

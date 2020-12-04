@@ -46,7 +46,7 @@ public class Product extends ApiResponse {
 		return this.price;
 	}
 
-	public ProductEntity setPrice(final long price) {
+	public Product setPrice(final long price) {
 		this.price = price;
 		return this;
 	}

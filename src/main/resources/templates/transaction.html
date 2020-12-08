@@ -29,19 +29,20 @@
 		
 		<div id="cartInformation">
 			<h4>Cart Count</h4>
-			<input id="count" type="text" th:value="" disabled />
+			<input id="count" type="text"  disabled />
 			<h4>Cart Cost</h4>
-			<input id="cost" type="text" th:value="" disabled />
+			<input id="cost" type="text"  disabled />
 		</div>
 
-        <!-- TODO need to edit to display correct information -->
+		<!-- TODO need to edit to display correct information -->
+		<!-- reference to id for name, price for price, count for count avaliable, and cartCount for count in cart -->
 		<div class="productsWrapper">
 			<ul id="productsListing" class="products">
 				<li th:each="product : ${products}">
-					<input type="hidden" name="productId" th:value="${product.id}" />
-					<span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
+					<input type="hidden" name="productId" th:value="${product.id}" />*
+					<span class="productPrice" th:text="${product.price}">price</span>
 					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.count}">0</span>
-					<br />&nbsp;&nbsp;<span class="productCreatedOnDisplay" th:text="${product.createdOn}">12/31/1999</span>
+					<br />&nbsp;&nbsp;<span class="productCartCount" th:text="${product.cartCount}">0</span>
 				</li>
 			</ul>
 		</div>
